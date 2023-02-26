@@ -3,7 +3,7 @@ import {collection,deleteDoc,doc,getDocs,} from "firebase/firestore";
 import "./Main.scss";
 import { db } from "../../firebase";
 import { Link } from "react-router-dom";
-import {Button,ButtonGroup,TableContainer,Thead, Tr,Th,Table,Tbody,Td,Spinner } from "@chakra-ui/react";
+import {Button,ButtonGroup,TableContainer,Thead, Tr,Th,Table,Tbody,Td,Spinner, Tfoot } from "@chakra-ui/react";
 
 
 
@@ -37,20 +37,19 @@ const Container = () => {
   return (
     <div className="container">
       <div className="col">
-      </div>
-      <div
+             <div
         style={{
           with:'100%'
         }}
         className='text-center row'
       >
-        <div style={{textAlign:'center',display:'flex',justifyContent:'center',alignItems:'center',gap:'30px',marginBottom:'30px'}}>
-          <h1 style={{ fontSize: "35px" }}>Products</h1>
-              <div style={{marginTop:'10px'}}>
+        <div style={{textAlign:'center',display:'flex',justifyContent:'center',alignItems:'center',gap:'30px',marginBottom:'50px',marginTop:'50px'}}>
+          <h1 style={{ fontSize: "35px",color:'white',fontWeight:'600' }}>Products</h1>
+              <div >
             <Link to={"/Create"}>
           {" "}
           <ButtonGroup variant='outline' >
-          <Button colorScheme='blue'>Add Product</Button>
+          <Button style={{backgroundColor:'#ececec'}}>Add Product</Button>
           </ButtonGroup>
         </Link>
         </div>
@@ -58,6 +57,8 @@ const Container = () => {
     
       
       </div>
+      </div>
+ 
     {loading?<h1><Spinner
   thickness='4px'
   speed='0.65s'
@@ -69,7 +70,7 @@ const Container = () => {
     
     {products.length != 0 ?
          <TableContainer className="TableContainer">
-         <Table variant='simple'>
+         <Table  variant='sm'>
            <Thead>
              <Tr>
                <Th>Product</Th>
@@ -82,15 +83,15 @@ const Container = () => {
                 <Tr key={item.id}>
                 <Td className="item-product">{item.product.toUpperCase()}</Td>
                 <Td  className="item-product" isNumeric> {item.stock}</Td>
-                <Td > <Link to={`/edit/${item.id}/${item.product}/${item.stock}`}><Button size='xs' className="button-chackra"> <span className="span">Edit</span></Button></Link>  <Button size='xs' className="button-chackra" onClick={()=>deleteProduct(item.id)}><span className="span">Delete</span></Button></Td>
+                <Td > <Link to={`/edit/${item.id}/${item.product}/${item.stock}`}><Button size='sm' style={{backgroundColor:'#9fd3c7'}} className="button-chackra"> <span className="span" style={{color:'black'}}>Edit</span></Button></Link>  <Button size='sm' style={{backgroundColor:' #142d4c'}} className="button-chackra" onClick={()=>deleteProduct(item.id)}><span className="span">Delete</span></Button></Td>
              </Tr>
              ))}  
             
            </Tbody>
-          
+     
          </Table>
        </TableContainer>:
-       <span> no hay productos</span>
+       <span style={{color:'white'}}> no hay productos</span>
     }
     </div>
   );

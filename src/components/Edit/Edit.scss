@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .row{
+        .form-container{
+            width: 400px;
+            .title-edit{
+                font-size: 35px;
+                margin-bottom:20px;
+                
+            }
+            .form{
+                display: flex;
+                flex-direction: column;
+                border-radius: 20px;
+                padding: 30px;
+                gap: 20px;
+            }
+        }
+    }
+}

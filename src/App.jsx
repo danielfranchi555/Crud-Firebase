@@ -8,7 +8,7 @@ function App() {
 
   return (
     <ChakraProvider>
-          <div style={{display:'flex',justifyContent:'center'}}>
+          <div >
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Container/>}></Route>

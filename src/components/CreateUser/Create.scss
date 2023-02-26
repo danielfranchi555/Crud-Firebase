@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .row{
+        .main-col{
+            .title{
+                font-size: 35px;
+                margin-bottom: 10px;
+                color: white;
+                font-weight: 600;
+            }
+            .form{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                width: 400px;
+                padding: 30px;
+            }
+        }
+    }
+}

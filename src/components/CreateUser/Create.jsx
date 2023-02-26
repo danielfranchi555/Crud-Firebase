@@ -1,8 +1,10 @@
 import { addDoc, collection } from 'firebase/firestore'
 import React, { useState } from 'react'
+import { Button, ButtonGroup } from 'react-bootstrap'
 import { Navigate, useNavigate } from 'react-router-dom'
+import swal from 'sweetalert'
 import { db } from '../../firebase'
-
+import './Create.scss'
 const Create = () => {
     const [productAdd,setProductAdd] = useState({
         product:'',
@@ -26,7 +28,10 @@ const Create = () => {
             alert('Ingresa los datos correctamente')
          }else{
            await addDoc(productsCollection,productAdd)
-            console.log(productAdd)
+           swal({
+            text: `Producto ${productAdd.product} agregado `,
+            icon: "success",
+          });
         navigate('/')
          }
         
@@ -36,14 +41,16 @@ const Create = () => {
    
 
   return (
-    <div className='container' style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+    <div className='container' >
         <div className='row'>
-            <div className='col text-center'>
-            <h1 style={{ fontSize: "35px" }}>Add Product</h1>
-             <form action=""  onSubmit={handleSumbit}>
-                    <input type="text" className='form-control' placeholder=' Product' name='product' onChange={handleChange} />
-                    <input type="number" className='form-control' placeholder='Nro de stock' name='stock' onChange={handleChange} />
-                    <button type='submit'>sumbit</button>
+            <div className='col main-col text-center'>
+            <h1 className='title'>Add Product</h1>
+             <form action="" className='form' onSubmit={handleSumbit}>
+                    <input type="text" className='form-control text-center' placeholder='Add Product' name='product' onChange={handleChange} />
+                    <input type="number" className='form-control text-center' placeholder='Nro de stock' name='stock' onChange={handleChange} />
+                    <ButtonGroup variant='outline' >
+          <Button  type='sumbit' style={{backgroundColor:'#9fd3c7',color:'black',fontWeight:'600'}} >Add</Button>
+          </ButtonGroup>
                 </form>
             </div> 
         </div>
