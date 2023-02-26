@@ -82,7 +82,7 @@ const Container = () => {
                 <Tr key={item.id}>
                 <Td className="item-product">{item.product.toUpperCase()}</Td>
                 <Td isNumeric> {item.stock}</Td>
-                <Td > <Link to={`/edit/${item.id}/${item.product}/${item.stock}`}><Button className="button-chackra">Edit</Button></Link>  <Button className="button-chackra" onClick={()=>deleteProduct(item.id)}>Delete</Button></Td>
+                <Td > <Link to={`/edit/${item.id}/${item.product}/${item.stock}`}><Button className="button-chackra"> <span className="span">Edit</span></Button></Link>  <Button className="button-chackra" onClick={()=>deleteProduct(item.id)}><span className="span">Delete</span></Button></Td>
              </Tr>
              ))}  
             
