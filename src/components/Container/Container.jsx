@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Form from "../Form/Form";
 import {collection,deleteDoc,doc,getDocs,} from "firebase/firestore";
 import "./Main.scss";
 import { db } from "../../firebase";
@@ -33,8 +32,12 @@ const Container = () => {
     getProducts();
   }, []);
 
+ 
+
   return (
     <div className="container">
+      <div className="col">
+      </div>
       <div
         style={{
           with:'100%'
@@ -63,7 +66,7 @@ const Container = () => {
   size='xl'
 /></h1>:
     null}
-    {products.length === 0 ? <p>No hay productos</p>:null}
+    
     {products.length != 0 ?
          <TableContainer className="TableContainer">
          <Table variant='simple'>
@@ -79,7 +82,7 @@ const Container = () => {
                 <Tr key={item.id}>
                 <Td className="item-product">{item.product.toUpperCase()}</Td>
                 <Td isNumeric> {item.stock}</Td>
-                <Td > <Link to={`/edit/${item.id}`}><Button>Edit</Button></Link>  <Button onClick={()=>deleteProduct(item.id)}>Delete</Button></Td>
+                <Td > <Link to={`/edit/${item.id}/${item.product}/${item.stock}`}><Button className="button-chackra">Edit</Button></Link>  <Button className="button-chackra" onClick={()=>deleteProduct(item.id)}>Delete</Button></Td>
              </Tr>
              ))}  
             
@@ -87,7 +90,7 @@ const Container = () => {
           
          </Table>
        </TableContainer>:
-       null
+       <span> no hay productos</span>
     }
     </div>
   );
@@ -95,47 +98,3 @@ const Container = () => {
 
 export default Container;
 
-{/*  <UnorderedList className="UnorderedList">
-         {products.map((item) => (
-          <ListItem
-            style={{
-              width: "300px",
-              display: "flex",
-              margin: "10px",
-              gap: "30px",
-              alignItems: "center",
-            }}
-          >
-            <div style={{ width: "100%" }}>
-              <p style={{ fontWeight: "600", fontSize: "15px" }}>
-                {" "}
-                 {item.product}
-              </p>
-            </div>
-            <div style={{ width: "100%" }}>
-              <p style={{ fontWeight: "600", fontSize: "15px" }}>
-                {" "}
-                 {item.stock}
-              </p>
-            </div>
-            <div style={{ display: "flex", margin: "auto", gap: "5px" }}>
-              <div>
-                <Link to={`/edit/${item.id}`}>
-                  {" "}
-                  <Button colorScheme="blue">Edit</Button>
-                </Link>
-              </div>
-              <div>
-                <WrapItem>
-                  <Button
-                    colorScheme="red"
-                    onClick={() => deleteProduct(item.id)}
-                  >
-                    Delete
-                  </Button>
-                </WrapItem>
-              </div>
-            </div>
-          </ListItem>
-        ))} 
-      </UnorderedList> */}
