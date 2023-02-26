@@ -1,6 +1,6 @@
 
 .container{
-    height: auto;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,17 +21,17 @@
 
 @media screen and ( max-width: 500px) {
     .TableContainer{
-        padding: 0px;
+        margin: auto;
         width: 365px;
     }
     .item-product{
         font-size: 10px;
     }
     .button-chackra{
-        width: 20px;
+        width: 40px;
     }
     .span{
          
-        font-size: 14px;
+        font-size: 13px;
     }
 }

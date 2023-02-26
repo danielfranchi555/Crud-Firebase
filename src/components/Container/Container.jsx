@@ -81,8 +81,8 @@ const Container = () => {
                {products.map((item)=>(
                 <Tr key={item.id}>
                 <Td className="item-product">{item.product.toUpperCase()}</Td>
-                <Td isNumeric> {item.stock}</Td>
-                <Td > <Link to={`/edit/${item.id}/${item.product}/${item.stock}`}><Button className="button-chackra"> <span className="span">Edit</span></Button></Link>  <Button className="button-chackra" onClick={()=>deleteProduct(item.id)}><span className="span">Delete</span></Button></Td>
+                <Td  className="item-product" isNumeric> {item.stock}</Td>
+                <Td > <Link to={`/edit/${item.id}/${item.product}/${item.stock}`}><Button size='xs' className="button-chackra"> <span className="span">Edit</span></Button></Link>  <Button size='xs' className="button-chackra" onClick={()=>deleteProduct(item.id)}><span className="span">Delete</span></Button></Td>
              </Tr>
              ))}  
             
