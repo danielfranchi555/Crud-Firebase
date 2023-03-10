@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {collection,deleteDoc,doc,getDocs,} from "firebase/firestore";
+import {collection,deleteDoc,doc,getDocs,onSnapshot} from "firebase/firestore";
 import "./Main.scss";
 import { db } from "../../firebase";
 import { Link } from "react-router-dom";
@@ -14,13 +14,24 @@ const Container = () => {
 
   const productsCollection = collection(db, "products");
 
+/*   const getMessages =  ()=>{
+    onSnapshot(collection(db, "messages"), (doc) => {
+    setMessages(doc.docs.map((item)=>({...item.data(),id:item.id})))
+ })
+ 
+ 
+ } */
+
   const getProducts = async () => {
-    const data = await getDocs(productsCollection);
-    setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-   
-    setLoading(false)
+    onSnapshot(  (productsCollection),(prod)=>{
+      setProducts(prod.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    })
+        setLoading(false)
+
   };
-  console.log(products);
+
+
+
 
   const deleteProduct = async (id) => {
     deleteDoc(doc(db, "products", id));
