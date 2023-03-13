@@ -59,11 +59,11 @@ const Container = () => {
       
       </div>
       </div>
-     {products.length === 0 ?
-      <h1 style={{color:'white',fontSize:'30px'}}>No hay productos</h1>:
-       loading? <h1><Spinner color='white' size='lg' /></h1>:
+     
+      {loading? <h1><Spinner color='white' size='lg' /></h1>:
       
      <TableContainer className="TableContainer">
+      
          <Table  variant='sm'>
            <Thead>
              <Tr>
@@ -81,11 +81,13 @@ const Container = () => {
              </Tr>
              ))}  
             
-           </Tbody>
-     
+           </Tbody>     
          </Table>
+         <div style={{textAlign:'center',marginTop:'50px'}}>
+{products.length === 0 && <h1 className="">No hay productos en la tabla</h1>}
+</div>
        </TableContainer>
-     
+       
      }
     
     
