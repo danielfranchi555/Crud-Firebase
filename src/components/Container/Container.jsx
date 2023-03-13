@@ -14,36 +14,26 @@ const Container = () => {
 
   const productsCollection = collection(db, "products");
 
-/*   const getMessages =  ()=>{
-    onSnapshot(collection(db, "messages"), (doc) => {
-    setMessages(doc.docs.map((item)=>({...item.data(),id:item.id})))
- })
- 
- 
- } */
+
 
   const getProducts = async () => {
     onSnapshot(  (productsCollection),(prod)=>{
       setProducts(prod.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+       setLoading(false) 
     })
-        setLoading(false)
+      
 
   };
-
-
 
 
   const deleteProduct = async (id) => {
     deleteDoc(doc(db, "products", id));
     await getProducts();
-    console.log(id);
   };
 
   useEffect(() => {
     getProducts();
   }, []);
-
- 
 
   return (
     <div className="container">
@@ -69,18 +59,11 @@ const Container = () => {
       
       </div>
       </div>
- 
-    {loading?<h1><Spinner
-  thickness='4px'
-  speed='0.65s'
-  emptyColor='gray.200'
-  color='blue.500'
-  size='xl'
-/></h1>:
-    null}
-    
-    {products.length != 0 ?
-         <TableContainer className="TableContainer">
+     {products.length === 0 ?
+      <h1 style={{color:'white',fontSize:'30px'}}>No hay productos</h1>:
+       loading? <h1><Spinner color='white' size='lg' /></h1>:
+      
+     <TableContainer className="TableContainer">
          <Table  variant='sm'>
            <Thead>
              <Tr>
@@ -101,9 +84,18 @@ const Container = () => {
            </Tbody>
      
          </Table>
-       </TableContainer>:
-       <span style={{color:'white'}}> no hay productos</span>
-    }
+       </TableContainer>
+     
+     }
+    
+    
+     
+    
+    
+  
+   
+        
+  
     </div>
   );
 };
