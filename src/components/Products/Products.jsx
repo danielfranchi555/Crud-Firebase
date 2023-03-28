@@ -20,8 +20,8 @@ const Products = ({results}) => {
 
   return (
     <div>
-  <TableContainer w='auto' >
-  <Table size='lg'   >
+  < >
+  <Table size='sm'   >
     <Thead>
       <Tr>
         <Th>Products</Th>
@@ -41,7 +41,7 @@ const Products = ({results}) => {
     </Tbody>
 
   </Table>
-</TableContainer>
+</>
     </div>
   )
 }
