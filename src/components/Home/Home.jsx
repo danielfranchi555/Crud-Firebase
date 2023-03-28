@@ -4,6 +4,7 @@ import { collection, deleteDoc, doc, onSnapshot } from 'firebase/firestore'
 import { PhoneIcon, Search2Icon } from '@chakra-ui/icons'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Spinner } from '@chakra-ui/react'
 import Products from '../Products/Products'
 
 
@@ -37,9 +38,13 @@ const Home = () => {
  const results = !prodFilter ? products : products.filter((dato)=> dato.name.toLowerCase().includes(prodFilter.toLocaleLowerCase()))
 
   return (
-   
-       
-        <Container  maxW='100%'>
+      <>
+      {loading ?
+         <Center h='300px' m='auto'>
+          <Spinner size='xl' />
+         </Center> 
+        :
+       <Container  maxW='100%'>
               <Stack bg='#ececec' border='solid 1px #233142' borderRadius='5px 5px 0px 0px' direction='row' justifyContent='space-between' p={2}  w='100%' >
          <Link to={'/addProduct'}>
          <Button colorScheme='blue' color='white'  >Add product</Button>
@@ -55,15 +60,14 @@ const Home = () => {
           </Box>
       
       </Stack>
-      {
-         loading? <Center> <Text fontSize='3x1'>loading...</Text></Center> :
+      
           <Box border='solid 1px gray' w='100%'>
           <Products results={results}/>
-        </Box>
-         }
-
-
+        </Box>       
         </Container>
+
+      }
+       </> 
   )
 }
 
