@@ -1,5 +1,5 @@
-import { Button, FormLabel, Input, Stack, Text, useDisclosure, useToast } from '@chakra-ui/react'
-import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import { Button, Input, Stack, Text, useToast } from '@chakra-ui/react'
+import { doc, updateDoc } from 'firebase/firestore'
 import React, {  useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import {
@@ -12,7 +12,6 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react'
 import { db } from '../../firebase'
-import { FormControl } from 'react-bootstrap'
 
 const EditProduct = () => {
 
